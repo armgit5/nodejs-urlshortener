@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // Render index page
 app.get('/', urlController.getIndex);
+app.get('/:id', urlController.getIndexById);
 app.post('/', urlController.postUrl);
 
 // Handling page not found
