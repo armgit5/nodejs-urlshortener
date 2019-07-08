@@ -23,14 +23,18 @@
 <body>
 
     <div class="container">
-        <form>
+        <form action="/" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Enter a long URL to make tiny:</label>
-                <input type="text" class="form-control"
+                <input type="text" class="form-control" name="url"
                     placeholder="Enter long url">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+
+
+        <div> The following URL: <%= oldUrl %> </div>
+        <div> resulted in the following TinyURL: <%= newUrl %> </div>
     </div>
 
     <!-- Optional JavaScript -->
