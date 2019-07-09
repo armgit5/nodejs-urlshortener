@@ -43,6 +43,14 @@
         <div class="error"> <%= error %> </div>
         <% } %>
 
+        <!-- Shows when get by id -->
+        <br>
+        <%if (getById) { %>
+        <div> The original long url is: <%= oldUrl %> </div>
+        <div class="error"> <%= error %> </div>
+        <% } %>
+
+
         <!-- Shows history of all urls -->
         <br>
         <%if (newUrl.length > 0) { %>
