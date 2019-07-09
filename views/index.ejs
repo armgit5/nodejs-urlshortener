@@ -17,6 +17,9 @@
             margin-top: 50px;
             width: 500px;
         }
+        .error {
+            color: red;
+        }
     </style>
 </head>
 
@@ -35,8 +38,8 @@
         <br>
         <div> The following URL: <%= oldUrl %> </div>
         <div> resulted in the following TinyURL: <%= newUrl %> </div>
+        <div class="error"> <%= error %> </div>
 
-        
     </div>
 
     <!-- Optional JavaScript -->

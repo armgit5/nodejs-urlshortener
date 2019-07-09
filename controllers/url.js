@@ -1,12 +1,15 @@
+// Validator
+const { validationResult } = require('express-validator');
+
 
 const url2id = {}; // Store long url to short url dictionary
 const url2shortUrl = {};
 let id = 100; // Starting id of the short url 
-                  // assuming there are 100 records already
+// assuming there are 100 records already
 
 // Get method
 exports.getIndex = (req, res, next) => {
-    res.render('index', {oldUrl: '', newUrl: '', posted: false, error: ''});
+    res.render('index', { oldUrl: '', newUrl: '', posted: false, error: '' });
 }
 
 // Get by Id methond
@@ -14,14 +17,23 @@ exports.getIndex = (req, res, next) => {
 // return long url
 exports.getIndexById = (req, res, next) => {
     const id = req.params.id;
-    res.render('index', {oldUrl: '', newUrl: '', posted: false, error: ''});
+    res.render('index', { oldUrl: '', newUrl: '', posted: false, error: '' });
 }
 
 // Post method
 exports.postUrl = (req, res, next) => {
+    const errors = validationResult(req);
+    let errorMessage = '';
     const url = req.body.url;
-    const newUrl = _shortenUrlBase62(url);
-    res.render('index', {oldUrl: url, newUrl: newUrl, posted: true, url2shortUrl: url2shortUrl, error: ''});
+    let newUrl = '';
+
+    if (!errors.isEmpty()) { // Check for valid url
+        errorMessage = 'Please enter a valid url';
+    } else {
+        newUrl = _shortenUrlBase62(url);
+    }
+
+    res.render('index', { oldUrl: url, newUrl: newUrl, posted: true, url2shortUrl: url2shortUrl, error: errorMessage });
 }
 
 
