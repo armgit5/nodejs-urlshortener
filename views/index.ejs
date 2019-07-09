@@ -17,6 +17,7 @@
             margin-top: 50px;
             width: 500px;
         }
+
         .error {
             color: red;
         }
@@ -29,16 +30,39 @@
         <form action="/" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Enter a long URL to make tiny:</label>
-                <input type="text" class="form-control" name="url"
-                    placeholder="Enter long url">
+                <input type="text" class="form-control" name="url" placeholder="Enter long url">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
+        <!-- Shows long and short urls -->
         <br>
+        <%if (posted) { %>
         <div> The following URL: <%= oldUrl %> </div>
         <div> resulted in the following TinyURL: <%= newUrl %> </div>
         <div class="error"> <%= error %> </div>
+        <% } %>
+
+        <!-- Shows history of all urls -->
+        <br>
+        <%if (newUrl.length > 0) { %>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Original Urls</th>
+                    <th>Short urls</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%for (const url in url2shortUrl) { %>
+                <tr>
+                    <td><%= url %></td>
+                    <td><%= url2shortUrl[url] %></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <% } %>
 
     </div>
 
